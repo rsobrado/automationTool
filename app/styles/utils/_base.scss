@@ -1,38 +1,42 @@
-// @import "/icons";
+@import "icons";
 
-*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
-.clearfix:before, .clearfix:after { content: ''; display: table; }
-.clearfix:after { clear: both; }
+*, 
+*:after,
+*:before { 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box; 
+}
 
-
-/* Default tab style */
-@font-face {
-	font-weight: normal;
-	font-style: normal;
-	font-family: 'stroke7pixeden';
-	src:url('../fonts/stroke7pixeden/stroke7pixeden.eot?u58ytb');
-	src:url('../fonts/stroke7pixeden/stroke7pixeden.eot?#iefixu58ytb') format('embedded-opentype'),
-		url('../fonts/stroke7pixeden/stroke7pixeden.woff?u58ytb') format('woff'),
-		url('../fonts/stroke7pixeden/stroke7pixeden.ttf?u58ytb') format('truetype'),
-		url('../fonts/stroke7pixeden/stroke7pixeden.svg?u58ytb#stroke7pixeden') format('svg');
+.clearfix:before,
+.clearfix:after { 
+ 	content: ''; 
+	display: table;
+}
+.clearfix:after { 
+	clear: both; 
 }
 
 body {
 	background: rgba(0, 70, 130, 0.85);
 	color: rgba(0,70,130,0.85);
 	font-weight: 400;
-	font-family: 'Raleway', Arial, sans-serif;
+	// font-family: 'Raleway', Arial, sans-serif;
 	font-size: 62.5% !important;
+	font-family: "omnes-pro",sans-serif;
 }
 
 a {
-  color: teal;
-  text-decoration: none;
-  outline: none;
-}
-
-a:hover, a:focus {
-  color: royalblue;
+	color: teal;
+	text-decoration: none;
+	outline: none;
+	&:hover, 
+	&:focus {
+		color: rgb(0,70,130);
+	}
+	&.icon.icon-plus {
+		line-height: 1;
+		margin-top: 3px;
+	}
 }
 
 footer {
@@ -43,8 +47,8 @@ footer {
 	bottom: 0;
 	box-sizing: border-box;
 	z-index: 999;
-	box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.13);
-	
+	box-shadow: 0 -2px 2px rgba(black, 0.13);
+
 	#bdx_Copyright {
 		max-width: 1200px;
 		width: 100%;
@@ -75,7 +79,7 @@ footer {
 					text-decoration: none;
 					text-transform: uppercase;
 					color: #5e90b6;
-					
+
 				}
 			}
 		}
@@ -83,34 +87,15 @@ footer {
 }
 
 p {
-  text-align: center;
-  padding: 1em;
+	text-align: center;
+	padding: 1em;
 }
-
-.form-horizontal {
-	padding: 20px;
-	box-sizing: border-box;
-	background: rgba(0,70,130,0.06);
-	border-radius: 3px;
-	margin: 5px 50px;
-}
-
-.no-flexbox .support {
-  display: block;
-}
-
-.hidden {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
-}
-
-.container > section {
-  padding: 5em 0;
-  font-size: 2em;
-  min-height: 100%;
+h1,
+h2,
+h3{
+	margin: 0;
+	line-height: 1;
+	font-family: "museo",serif;
 }
 
 
@@ -122,10 +107,15 @@ p {
 	overflow: hidden;
 }
 
-.tab-current {
-	box-shadow: 0 -3px 4px rgba(black, 0.65);
-	overflow: hidden;
-	border-radius: 3px 3px 0 0;
+.container {
+	width: 100%;
+	padding: 0;
+	padding-bottom: 50px;
+	> section {
+		padding: 5em 0;
+		font-size: 2em;
+		min-height: 100%;
+	}
 }
 
 .content-wrap {
@@ -133,20 +123,36 @@ p {
 	border-radius: 0 0 3px 3px;
 }
 
-.form-horizontal .control-label{
-	text-align: left;
+.form-horizontal {
+	padding: 20px;
+	box-sizing: border-box;
+	background: rgba(0,70,130,0.06);
+	border-radius: 3px;
+	margin: 20px 50px 0;
+	border: 1px solid rgba(0,0,0,0.08);
+	overflow: hidden;
+	.control-label{
+		text-align: left;
+	}
 }
 
-.dropdown-menu {
-	right: 0;
-	left: auto;
-	overflow: hidden;
-	margin: 0;
-	padding: 0;
+.form-wrapper {
+	background: rgba(0,70,130,0.05);
+	padding: 20px 0;
+	border: 1px solid rgba(0,0,0,0.08);
+	margin: 0 20px;
 }
+
+.hidden {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	opacity: 0;
+}
+
 .side-menu {
 	overflow: hidden;
-	max-width: 300px;
 	margin: 0;
 	text-align: left;
 	background: rgba(0, 70, 130, 0.1);
@@ -156,22 +162,20 @@ p {
 	border-radius: 3px;
 	li {
 		padding: 0 20px;
-		-webkit-transition: all 0.3s;
-		transition: all 0.1s;
 		&:nth-child(even){
-			background: rgba(0,0,0,.03);
+			background: rgba(black,.03);
 		}
 		&:hover{
-			background: rgba(0,0,0,.07);
+			background: rgba(0,0,0,.08);
+			border-left: 2px solid;
+			padding-left: 18px;
 		}
 	}
 }
 
-
-
-@media (min-width: 992px){
-	.container {
-		width: 100%;
-		padding: 0;
-	}
+.tab-current {
+	box-shadow: 0 -3px 4px rgba(black, 0.65);
+	overflow: hidden;
+	border-radius: 3px 3px 0 0;
 }
+

@@ -12,11 +12,13 @@
 	<!-- endbower -->
 	<!-- endbuild -->
 	<!-- build:css(.tmp) styles/main.css -->
-	<link rel="stylesheet" href="styles/main.css">
 	<link rel="stylesheet" href="styles/normalize.css">
+	<link rel="stylesheet" href="styles/main.css">
 	<!-- endbuild -->
 	<!-- build:js scripts/vendor/modernizr.js -->
 	<script src="bower_components/modernizr/modernizr.js"></script>
+	<script src="http://use.typekit.net/npb0lct.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
 	<!-- endbuild -->
 
 </head>
@@ -41,27 +43,177 @@
 				</ul>
 			</nav>
 			<div class="content-wrap">
+				<!-- section performance -->
 				<section id="performance" class="content-current">
-					<ul class="side-menu" role="menu">
-                        <li><a href="/PerformanceExecution">Execute</a></li>
-                        <li><a href="/PerformanceExecution/List">View</a></li>
-                        <li><a href="/PerformanceExecution/ViewPerformanceComparisonDailyHomePage">Daily Comparison - Home Page</a></li>
-                        <li><a href="/PerformanceExecution/ViewPerformanceComparisonDailyCommunityResults">Daily Comparison - Community Results</a></li>
-                    </ul>
+					<div class="col-sm-4">
+						<ul class="side-menu" role="menu">
+							<li><a href="/PerformanceExecution">Execute</a></li>
+							<li><a href="/PerformanceExecution/List">View</a></li>
+							<li><a href="/PerformanceExecution/ViewPerformanceComparisonDailyHomePage">Daily Comparison - Home Page</a></li>
+							<li><a href="/PerformanceExecution/ViewPerformanceComparisonDailyCommunityResults">Daily Comparison - Community Results</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-8">
+						<div class="form-wrapper">
+						    <h1>Execute Performance Test Case</h1>
+							<form action="/PerformanceExecution/ViewExecutionResults" class="form-horizontal" method="post" novalidate="novalidate">        <div class="form-group">
+							            <label class="col-sm-4 control-label" for="UseCustomUrl">Use:</label>
+							            <div class="col-sm-2">
+							                <input checked="checked" data-val="true" data-val-required="Please select if you want to use either a Custom URL or a Default URL" id="UseCustomUrl" name="UseCustomUrl" type="radio" value="True"> Custom
+							            </div>
+							            <div class="col-sm-6">
+							                <input class="form-control" data-val="true" data-val-requiredif="Please enter the custom URL" data-val-requiredif-dependentproperty="UseCustomUrl" data-val-requiredif-dependentvalue="True" data-val-requiredif-operator="EqualTo" id="CustomUrl" name="CustomUrl" type="text" value="">
+							                <span class="field-validation-valid" data-valmsg-for="CustomUrl" data-valmsg-replace="true"></span> 
+							            </div>
+							        </div>       
+							        <div class="form-group">
+							            <label class="col-sm-4 control-label"></label>
+							            <div class="col-sm-2">
+							                <input id="UseCustomUrl" name="UseCustomUrl" type="radio" value="False"> Default
+							            </div>
+							            <div class="col-sm-6">
+							                <select class="form-control" data-val="true" data-val-required="The Site field is required." data-val-requiredif="Please select the site where you want to execute the performance test." data-val-requiredif-dependentproperty="UseCustomUrl" data-val-requiredif-dependentvalue="False" data-val-requiredif-operator="EqualTo" id="Site" name="Site"><option value="">Choose an option</option>
+							<option selected="selected" value="NewHomeSource">NewHomeSource</option>
+							<option value="NewHomeSourceProfessional">NewHomeSourceProfessional</option>
+							<option value="Move">Move</option>
+							</select>
+							                <span class="field-validation-valid" data-valmsg-for="Site" data-valmsg-replace="true"></span> 
+							            </div>
+							            
+							        </div>
+							        <div class="form-group PageField" style="display: none;">
+							            <label class="col-sm-4 control-label" for="Page">Page:</label>
+							            <div class="col-sm-8">
+							                <select class="form-control" data-val="true" data-val-required="The Page field is required." data-val-requiredif="Please select the site where you want to execute the performance test." data-val-requiredif-dependentproperty="UseCustomUrl" data-val-requiredif-dependentvalue="False" data-val-requiredif-operator="EqualTo" id="Page" name="Page"><option value="">Choose an option</option>
+							<option selected="selected" value="HomePage">HomePage</option>
+							<option value="CommunityResults">CommunityResults</option>
+							<option value="CommunityDetails">CommunityDetails</option>
+							<option value="HomeDetails">HomeDetails</option>
+							</select>
+							                <span class="field-validation-valid" data-valmsg-for="Page" data-valmsg-replace="true"></span>
+							            </div>
+							        </div>
+							        <div class="form-group CommunityResultsOptions" style="display: none;">
+							            <label class="col-sm-4 control-label" for="MarketId">Market Id:</label>
+							            <div class="col-sm-8">
+							                <input class="form-control" data-val="true" data-val-number="The field MarketId must be a number." data-val-required="The MarketId field is required." data-val-requiredif="Please Enter a valid number for the Market Id field." data-val-requiredif-dependentproperty="Page" data-val-requiredif-dependentvalue="CommunityResults" data-val-requiredif-operator="EqualTo" data-val-requiredif-pattern="^[1-9][0-9]*$" id="MarketId" name="MarketId" type="text" value="0">
+							                <span class="field-validation-valid" data-valmsg-for="MarketId" data-valmsg-replace="true"></span>
+							            </div>
+							        </div>
+							        <div class="form-group CommunityDetailsOptions" style="display: none;">
+							            <label class="col-sm-4 control-label" for="BuilderId">Builder Id:</label>
+							            <div class="col-sm-8">
+							                <input class="form-control" data-val="true" data-val-number="The field BuilderId must be a number." data-val-required="The BuilderId field is required." data-val-requiredif="Please Enter a valid number for the Builder Id field." data-val-requiredif-dependentproperty="Page" data-val-requiredif-dependentvalue="CommunityDetails" data-val-requiredif-operator="EqualTo" data-val-requiredif-pattern="^[1-9][0-9]*$" id="BuilderId" name="BuilderId" type="text" value="0">
+							                <span class="field-validation-valid" data-valmsg-for="BuilderId" data-valmsg-replace="true"></span>
+							            </div>
+							        </div>
+							        <div class="form-group CommunityDetailsOptions" style="display: none;">
+							            <label class="col-sm-4 control-label" for="CommunityId">Community Id:</label>
+							            <div class="col-sm-8">
+							                <input class="form-control" data-val="true" data-val-number="The field CommunityId must be a number." data-val-required="The CommunityId field is required." data-val-requiredif="Please Enter a valid number for the Community Id field." data-val-requiredif-dependentproperty="Page" data-val-requiredif-dependentvalue="CommunityDetails" data-val-requiredif-operator="EqualTo" data-val-requiredif-pattern="^[1-9][0-9]*$" id="CommunityId" name="CommunityId" type="text" value="0">
+							                <span class="field-validation-valid" data-valmsg-for="CommunityId" data-valmsg-replace="true"></span>
+							            </div>
+							        </div>
+							        <div class="form-group HomeDetailsOptions" style="display: none;">
+							            <label class="col-sm-4 control-label" for="CommunityId">Use:</label>
+							            <div class="col-sm-2">
+							                <input data-val="true" data-val-requiredif="Please select if you want to use either a Spec or a Plan." data-val-requiredif-dependentproperty="Page" data-val-requiredif-dependentvalue="HomeDetails" data-val-requiredif-operator="EqualTo" id="IsSpec" name="IsSpec" type="radio" value="True"> Spec Id:                
+							            </div>
+							            <div class="col-sm-6">
+							                <input class="form-control" data-val="true" data-val-number="The field SpecId must be a number." data-val-requiredif="Please Enter a valid number for the Spec Id field." data-val-requiredif-dependentproperty="IsSpec" data-val-requiredif-dependentvalue="True" data-val-requiredif-operator="EqualTo" data-val-requiredif-pattern="^[1-9][0-9]*$" id="SpecId" name="SpecId" type="text" value="">
+							                <span class="field-validation-valid" data-valmsg-for="SpecId" data-valmsg-replace="true"></span>
+							                <span class="field-validation-valid" data-valmsg-for="IsSpec" data-valmsg-replace="true"></span>
+							            </div>     
+							        </div>
+							        <div class="form-group HomeDetailsOptions" style="display: none;">
+							            <label class="col-sm-4 control-label"></label>
+							            <div class="col-sm-2">
+							                <input id="IsSpec" name="IsSpec" type="radio" value="False"> Plan Id:
+							            </div>
+							            <div class="col-sm-6">
+							                <input class="form-control" data-val="true" data-val-number="The field PlanId must be a number." data-val-requiredif="Please Enter a valid number for the Plan Id field." data-val-requiredif-dependentproperty="IsSpec" data-val-requiredif-dependentvalue="False" data-val-requiredif-operator="EqualTo" data-val-requiredif-pattern="^[1-9][0-9]*$" id="PlanId" name="PlanId" type="text" value="">
+							                <span class="field-validation-valid" data-valmsg-for="PlanId" data-valmsg-replace="true"></span>
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <label class="col-sm-4 control-label" for="NumberOfExecutions">Number of Execution:</label>
+							            <div class="col-sm-8">
+							                <select class="form-control" data-val="true" data-val-number="The field NumberOfExecutions must be a number." data-val-required="The NumberOfExecutions field is required." id="NumberOfExecutions" name="NumberOfExecutions"><option value="">Choose an option</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							</select>
+							                <span class="field-validation-valid" data-valmsg-for="NumberOfExecutions" data-valmsg-replace="true"></span>
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <label class="col-sm-4 control-label" for="Email">Email:</label>
+							            <div class="col-sm-8">
+							                <input class="form-control" data-val="true" data-val-regex="Please enter a valid Email Address of builderhomesite.com" data-val-regex-pattern="[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@builderhomesite.com" data-val-required="Please enter the Email Address where you want to receive the results." id="Email" name="Email" type="text" value="">
+							                <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <label class="col-sm-4 control-label" for="Release">Release:</label>
+							            <div class="col-sm-8">
+							                <input class="form-control" data-val="true" data-val-required="Please enter the Name of the Release" id="Release" name="Release" type="text" value="">
+							                <span class="field-validation-valid" data-valmsg-for="Release" data-valmsg-replace="true"></span>
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <label class="col-sm-4 control-label" for="AttachImagesForBrowser">Attached Images from:</label>
+							            <div class="col-sm-8">
+							                <select class="form-control" id="AttachImagesForBrowser" name="AttachImagesForBrowser"><option value="None">None</option>
+							<option value="Google Chrome">Google Chrome</option>
+							<option value="Firefox">Firefox</option>
+							<option value="Safari">Safari</option>
+							<option value="Internet Explorer">Internet Explorer</option>
+							<option value="All">All</option>
+							</select>
+							                <span class="field-validation-valid" data-valmsg-for="AttachImagesForBrowser" data-valmsg-replace="true"></span>
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <label class="col-sm-4 control-label" for="UseCustomLabel">Use custom Label?:</label>
+							            <div class="col-sm-2">
+							                <input data-val="true" data-val-required="The UseCustomLabel field is required." id="UseCustomLabel" name="UseCustomLabel" type="checkbox" value="true"><input name="UseCustomLabel" type="hidden" value="false">
+							            </div>
+							            <div class="col-sm-6">
+							                <input class="form-control" data-val="true" data-val-requiredif="Please enter the Label for the test" data-val-requiredif-dependentproperty="UseCustomLabel" data-val-requiredif-dependentvalue="True" data-val-requiredif-operator="EqualTo" disabled="disabled" id="Label" name="Label" type="text" value="">
+							                <span class="field-validation-valid" data-valmsg-for="Label" data-valmsg-replace="true"></span> 
+							            </div>
+							        </div>
+
+							        <input type="submit" value="Execute Performance Test" class="btn btn-primary pull-right">
+							</form>    
+						</div>
+					</div>
 				</section>
+				<!-- section performance -->
 				<section id="sso" class="">
-					<ul class="side-menu" role="menu">
-                        <li><a href="/PerformanceExecution">Execute</a></li>
-                        <li><a href="/PerformanceExecution/List">View</a></li>
-                    </ul>
+					<div class="col-sm-4">
+						<ul class="side-menu" role="menu">
+							<li><a href="/PerformanceExecution">Execute</a></li>
+							<li><a href="/PerformanceExecution/List">View</a></li>
+						</ul>
+					</div>
 				</section>
+				<!-- section mva -->
 				<section id="mva" class="">
-					<ul class="side-menu" role="menu">
-                        <li><a href="/PerformanceExecution">Authentication</a></li>
-                        <li><a href="/PerformanceExecution/List">Maintenance</a></li>
-                    </ul>
+					<div class="col-sm-4">
+						<ul class="side-menu" role="menu">
+							<li><a href="/PerformanceExecution">Authentication</a></li>
+							<li><a href="/PerformanceExecution/List">Maintenance</a></li>
+						</ul>
+					</div>
 				</section>
-				<section id="seoa" class=""><p>4</p></section>
+				<!-- section seoa -->
+				<section id="seoa" class="">
+					<p>4</p>
+				</section>
+				<!-- section mobile -->
 				<section id="mobile" class="">
 					<div class="form-wrapper">
 					    <h1>Execute Mobile Redirect project</h1>
@@ -69,14 +221,14 @@
 						<form action="/MobileRedirect/ViewMobileRedirectExecutionResults" class="form-horizontal" method="post" novalidate="novalidate">        <div class="form-group">
 				            <label class="col-sm-4 control-label" for="Environment">Environment:</label>
 				            <div class="col-sm-8">
-				                <select class="form-control" data-val="true" data-val-required="The Environment field is required." id="Environment" name="Environment">
-				                <option selected="selected" value="Production">Production</option>
-								<option value="Stage">Stage</option>
-								<option value="Test">Test</option>
-								<option value="Sprint">Sprint</option>
-								<option value="HotFix">HotFix</option>
-							</select>
-							            </div>
+					            <select class="form-control" data-val="true" data-val-required="The Environment field is required." id="Environment" name="Environment">
+					                <option selected="selected" value="Production">Production</option>
+									<option value="Stage">Stage</option>
+									<option value="Test">Test</option>
+									<option value="Sprint">Sprint</option>
+									<option value="HotFix">HotFix</option>
+								</select>
+				            </div>
 							        </div>
 							        <div id="userAgents">
 							            <div class="form-group">
@@ -85,9 +237,7 @@
 							                    <input class="form-control userAgentInput" id="UserAgents_0_" name="UserAgents[0]" type="text" value="">
 							                </div>
 							                <div class="col-sm-1">
-							                    <a href="#">
-							                        <img src="../../Content/themes/base/images/plus.ico" alt="Add another User Agent." class="addUserAgent">
-							                    </a>
+									            <a href="#" class="icon icon-plus"></a>
 							                </div>
 							            </div>
 							        </div>
@@ -105,9 +255,7 @@
 							            <input class="form-control emailInput" id="recipient_0" name="EmailRecipients[0]" type="text" value="">
 							        </div>
 							        <div class="col-sm-1">
-							            <a href="#">
-							                <img src="../../Content/themes/base/images/plus.ico" alt="Add another email." class="addEmail">
-							            </a>
+							            <a href="#" class="icon icon-plus"></a>
 							        </div>
 							    </div>
 							</div>
@@ -125,13 +273,14 @@
 					            </div>
 					            <div class="loading loadingRight mobile-redirect-loading">
 					                
-					                <img src="../../Content/themes/base/images/loading.gif"><span>The project is being executed, it could take a few minutes.</span>
+					                <!-- <img src="../../Content/themes/base/images/loading.gif"> -->
+					                <span>The project is being executed, it could take a few minutes.</span>
 					            </div>
 					        </div>
 						</form>
 					</div>
-
 				</section>
+				<!-- section ads -->
 				<section id="advertisement" class=""><p>6</p></section>
 			</div><!-- /content -->
 		</div><!-- /tabs -->
@@ -187,6 +336,8 @@
 </script>
 
 <!-- build:js({app,.tmp}) scripts/main.js -->
+
+
 <script src="scripts/cbpFWTabs.js"></script>
 <script src="scripts/main.js"></script>
 <!-- endbuild -->
